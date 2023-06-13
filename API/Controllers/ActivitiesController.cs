@@ -9,7 +9,8 @@ namespace API.Controllers
 {
     public class ActivitiesController : BaseApiController
     {
-        private readonly IMediator _mediator;
+
+        ///Moved the DataContext logic inside Application Layer
 
         // private readonly DataContext _context;
 
@@ -30,15 +31,24 @@ namespace API.Controllers
         //     return await _context.Activities.FindAsync(id);
         // }
 
-        public ActivitiesController(IMediator mediator)
-        {
-            this._mediator = mediator;
-        }
+        ///Moved the IMediator inside BaseApiController and make conroller Thinner
+
+        //private readonly IMediator _mediator;
+        // public ActivitiesController(IMediator mediator)
+        // {
+        //     this._mediator = mediator;
+        // }
+
+        // [HttpGet] //api/activities
+        // public async Task<ActionResult<List<Activity>>> GetActivities()
+        // {
+        //     return await _mediator.Send(new List.Query());
+        // }
 
         [HttpGet] //api/activities
         public async Task<ActionResult<List<Activity>>> GetActivities()
         {
-            return await _mediator.Send(new List.Query());
+            return await Mediator.Send(new List.Query());
         }
 
         [HttpGet("{id}")] //api/activities/id
