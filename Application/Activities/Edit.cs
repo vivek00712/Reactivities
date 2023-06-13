@@ -1,7 +1,6 @@
 using MediatR;
 using Domain;
 using Persistence;
-using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 
 namespace Application.Activities
